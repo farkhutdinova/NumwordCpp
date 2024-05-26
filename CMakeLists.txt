@@ -3,4 +3,6 @@ project(NumwordCpp)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(NumwordCpp main.cpp)
+add_executable(NumwordCpp main.cpp
+        numword.cpp
+        numword.h)
