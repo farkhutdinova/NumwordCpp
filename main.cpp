@@ -23,7 +23,7 @@ int main() {
 
     print("n is {}, {}\n", nw.getnum(), nw);
 
-//    nw = 3; print("n is {}, {}\n", nw.getnum(), nw);
+    nw = 3; print("n is {}, {}\n", nw.getnum(), nw);
 //    nw = 47; print("n is {}, {}\n", nw.getnum(), nw);
 //    nw = 73; print("n is {}, {}\n", nw.getnum(), nw);
 //    nw = 1492; print("n is {}, {}\n", nw.getnum(), nw);
