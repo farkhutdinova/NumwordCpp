@@ -36,3 +36,6 @@
 
 # CMake
 cmake-build-*/
+.vs/
+
+NumwordCpp/x64/Debug/

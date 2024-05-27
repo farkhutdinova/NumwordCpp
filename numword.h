@@ -16,8 +16,11 @@ namespace evgn {
     public:
         numword(const uint64_t& n = 0) : _num(n) {}; // assignment ctor
         numword(const numword& nw) : _num(nw._num) {} // copy ctor
-        const string& operator() (const uint64_t& num) { return {}; };
+        const string& operator() (const uint64_t& num) { return "words"; };
         uint64_t getnum() const { return _num; }
+        uint64_t operator= (const uint64_t& num);
+        const string& words();
+        const string& words(const uint64_t& num);
     };
 
 } // evgn
