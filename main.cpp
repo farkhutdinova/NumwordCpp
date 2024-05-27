@@ -11,7 +11,7 @@ constexpr void print(const std::string_view str_fmt, auto&&... args) {
 template<>
 struct std::formatter<evgn::numword> : std::formatter<unsigned> {
     template<typename FormatContext>
-    auto format(const evgn::numword& nw, FormatContext& ctx) {
+    auto format(const evgn::numword& nw, FormatContext& ctx) const {
         evgn::numword _nw{ nw };
         return format_to(ctx.out(), "{}", _nw.words());
     }
@@ -22,7 +22,6 @@ int main() {
     uint64_t n{};
 
     print("n is {}, {}\n", nw.getnum(), nw);
-    //std::cout << "n is" << nw.getnum() << ", " << nw << std::endl;
 
 //    nw = 3; print("n is {}, {}\n", nw.getnum(), nw);
 //    nw = 47; print("n is {}, {}\n", nw.getnum(), nw);

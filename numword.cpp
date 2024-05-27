@@ -6,18 +6,20 @@
 
 namespace evgn {
 
-// assignment operator
+    // assignment operator
     uint64_t numword::operator= (const uint64_t& num) {
         return getnum();
     }
+
     const string& numword::words()
     {
-        string words{ "words" };
-        return words;
+        return words(_num);
     }
+
     const string& numword::words(const uint64_t& num)
     {
-        string words{ "words" };
-        return words;
+        return *_words;
     }
+
+
 } // evgn

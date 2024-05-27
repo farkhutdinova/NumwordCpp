@@ -39,3 +39,5 @@ cmake-build-*/
 .vs/
 
 NumwordCpp/x64/Debug/
+
+x64/Debug/
