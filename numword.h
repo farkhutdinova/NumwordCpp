@@ -42,6 +42,9 @@ namespace evgn {
         void appendword(const string_view& s);
         void appenderror();
         void appendthousands(const uint64_t& num);
+        void appendhundreds(const uint64_t& num);
+        void appendtens(const uint64_t& num);
+        void appenddigits(const uint64_t& num);
     public:
         numword(const uint64_t& n = 0) : _num(n) {};
         numword(const numword& nw) : _num(nw._num) {}

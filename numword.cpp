@@ -19,7 +19,15 @@ namespace evgn {
 
     const string& numword::words(const uint64_t& num)
     {
-        if (num > _max) appenderror();
+        if (num > _max) {
+            appenderror();
+            return *_words;
+        }
+
+        if (num < 10) {
+            appenddigits(num);
+            return *_words;
+        }
 
         auto rest = num;
         if (rest > _quadrillion) {
@@ -43,16 +51,16 @@ namespace evgn {
             rest %= _billion;
         }
 
-        if (rest > _million) {
+        if (rest >= _million) {
             auto millions = rest / _million;
             appendthousands(millions);
             appendword(_bigs[2]);
             rest %= _million;
         }
 
-
-        appendthousands(rest);
-
+        if (rest >= _thousand) appendthousands(rest);
+        else if (rest >= _hundred) appendhundreds(rest);
+        else if (rest > 0) appendtens(rest);
 
         return *_words;
     }
@@ -65,11 +73,11 @@ namespace evgn {
     void numword::appendthousands(const uint64_t& num)
     {
         auto rest = num;
-        if (rest > _hundred) {
-            auto h = rest / _hundred;
-            appendword(_numbers[h]);
-            appendword(_bigs[0]);
-            rest %= _hundred;
+        if (rest >= _thousand) {
+            auto h = rest / _thousand;
+            appendhundreds(h);
+            appendword(_bigs[1]);
+            rest %= _thousand;
         }
         if (rest > 20) {
             auto t = rest / 10;
@@ -78,11 +86,44 @@ namespace evgn {
             if (rest > 0) appendword(_numbers[rest]);
             return;
         }
-        if (rest > 9) appendword(_teens[rest]);
+        if (rest > 9) appendword(_teens[rest % 10]);
         else appendword(_numbers[rest]);
+    }
+
+    void numword::appendhundreds(const uint64_t& num)
+    {
+        auto rest = num;
+        if (rest >= _hundred) {
+            auto t = rest / _hundred;
+            appendword(_numbers[t]);
+            appendword(_bigs[0]);
+            rest %= _hundred;
+            if (rest > 0) appendtens(rest);
+        }
+        else appendtens(rest);
+    }
+
+    void numword::appendtens(const uint64_t& num)
+    {
+        auto rest = num;
+        if (rest > 10) {
+            auto t = rest / 10;
+            appendword(_tens[t]);
+            rest %= 10;
+            if (rest > 0) appendword(_numbers[rest]);
+            return;
+        }
+        if (rest > 9) appendword(_teens[rest % 10]);
+        else appendword(_numbers[rest]);
+    }
+
+    void numword::appenddigits(const uint64_t& num)
+    {
+        appendword(_numbers[num]);
     }
 
     void numword::appendword(const string_view& s) {
         _words->append(s);
+        _words->append(" ");
     }
 } // evgn
