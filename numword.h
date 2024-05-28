@@ -22,10 +22,26 @@ namespace evgn {
 
     constexpr string_view _bigs[]{ "hundred", "thousand", "million", "billion", "trillion", "quadrillion" };
 
+    constexpr uint64_t _max = 999999999999999999;
+
+    constexpr uint64_t _quadrillion = 1000000000000000;
+
+    constexpr uint64_t _trillion = 1000000000000;
+
+    constexpr uint64_t _billion = 1000000000;
+
+    constexpr uint64_t _million = 1000000;
+
+    constexpr uint64_t _thousand = 1000;
+
+    constexpr uint64_t _hundred = 100;
+
     class numword {
         uint64_t _num{};
         std::unique_ptr<string> _words = std::make_unique<string>(string{});
         void appendword(const string_view& s);
+        void appenderror();
+        void appendthousands(const uint64_t& num);
     public:
         numword(const uint64_t& n = 0) : _num(n) {};
         numword(const numword& nw) : _num(nw._num) {}

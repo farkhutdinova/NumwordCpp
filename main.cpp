@@ -24,8 +24,8 @@ int main() {
     print("n is {}, {}\n", nw.getnum(), nw);
 
     nw = 3; print("n is {}, {}\n", nw.getnum(), nw);
-//    nw = 47; print("n is {}, {}\n", nw.getnum(), nw);
-//    nw = 73; print("n is {}, {}\n", nw.getnum(), nw);
+    nw = 47; print("n is {}, {}\n", nw.getnum(), nw);
+    nw = 73; print("n is {}, {}\n", nw.getnum(), nw);
 //    nw = 1492; print("n is {}, {}\n", nw.getnum(), nw);
 //    nw = 10012; print("n is {}, {}\n", nw.getnum(), nw);
 //
@@ -37,6 +37,6 @@ int main() {
 //    n = 474142398123; print("n is {}, {}\n", n, nw(n));
 //    n = 1474142398007; print("n is {}, {}\n", n, nw(n));
 //    n = 999000000000000; print("n is {}, {}\n", n, nw(n));
-//    n = 999999999999999999; print("n is {}, {}\n", n, nw(n));
+//    n = 999 999 999 999 999 999; print("n is {}, {}\n", n, nw(n));
 //    n = 1000000000000000000; print("n is {}, {}\n", n, nw(n));
 }
