@@ -41,6 +41,7 @@ namespace evgn {
         std::unique_ptr<string> _words = std::make_unique<string>(string{});
         void appendword(const string_view& s);
         void appenderror();
+        void appendmillions(const uint64_t& num);
         void appendthousands(const uint64_t& num);
         void appendhundreds(const uint64_t& num);
         void appendtens(const uint64_t& num);
@@ -48,7 +49,7 @@ namespace evgn {
     public:
         numword(const uint64_t& n = 0) : _num(n) {};
         numword(const numword& nw) : _num(nw._num) {}
-        const string& operator() (const uint64_t& num) { return "words"; };
+        const string& operator() (const uint64_t& num) { return words(num); };
         uint64_t getnum() const { return _num; }
         uint64_t operator= (const uint64_t& num);
         const string& words();

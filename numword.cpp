@@ -19,6 +19,8 @@ namespace evgn {
 
     const string& numword::words(const uint64_t& num)
     {
+        _words->clear();
+
         if (num > _max) {
             appenderror();
             return *_words;
@@ -70,6 +72,18 @@ namespace evgn {
         _words->append("error");
     }
 
+    void numword::appendmillions(const uint64_t& num)
+    {
+        auto rest = num;
+        if (rest >= _million) {
+            auto h = rest / _million;
+            appendhundreds(h);
+            appendword(_bigs[1]);
+            rest %= _thousand;
+        }
+        appendhundreds(rest);
+    }
+
     void numword::appendthousands(const uint64_t& num)
     {
         auto rest = num;
@@ -79,15 +93,7 @@ namespace evgn {
             appendword(_bigs[1]);
             rest %= _thousand;
         }
-        if (rest > 20) {
-            auto t = rest / 10;
-            appendword(_tens[t]);
-            rest %= 10;
-            if (rest > 0) appendword(_numbers[rest]);
-            return;
-        }
-        if (rest > 9) appendword(_teens[rest % 10]);
-        else appendword(_numbers[rest]);
+        appendhundreds(rest);
     }
 
     void numword::appendhundreds(const uint64_t& num)
@@ -98,9 +104,8 @@ namespace evgn {
             appendword(_numbers[t]);
             appendword(_bigs[0]);
             rest %= _hundred;
-            if (rest > 0) appendtens(rest);
         }
-        else appendtens(rest);
+        appendtens(rest);
     }
 
     void numword::appendtens(const uint64_t& num)
@@ -110,7 +115,7 @@ namespace evgn {
             auto t = rest / 10;
             appendword(_tens[t]);
             rest %= 10;
-            if (rest > 0) appendword(_numbers[rest]);
+            appenddigits(rest);
             return;
         }
         if (rest > 9) appendword(_teens[rest % 10]);
@@ -119,7 +124,7 @@ namespace evgn {
 
     void numword::appenddigits(const uint64_t& num)
     {
-        appendword(_numbers[num]);
+        if (num > 0) appendword(_numbers[num]);
     }
 
     void numword::appendword(const string_view& s) {

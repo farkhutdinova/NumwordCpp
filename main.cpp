@@ -22,7 +22,6 @@ int main() {
     uint64_t n{};
 
     print("n is {}, {}\n", nw.getnum(), nw);
-
     nw = 3; print("n is {}, {}\n", nw.getnum(), nw);
     nw = 47; print("n is {}, {}\n", nw.getnum(), nw);
     nw = 73; print("n is {}, {}\n", nw.getnum(), nw);
